@@ -269,7 +269,7 @@
   .sonido:hover { opacity:1; }
 
   /* ---------- comprar: el formulario dentro de la landing ---------- */
-  .compra { padding:56px 0 20px; }
+  .compra { padding:44px 0 6px; }
   .compra .intro { color:var(--gris); margin:-8px 0 22px; }
   .pasoc { margin-bottom:14px; }
   .pasoc .enc { display:flex; align-items:center; gap:14px; margin-bottom:14px; }
@@ -300,7 +300,10 @@
   .copiar.ok { color:var(--oro); border-color:rgba(230,199,116,.6); }
   .aviso-pago { margin-top:12px; color:var(--gris); font-size:14px; }
   .campos { display:grid; gap:12px; }
-  @media (min-width:600px) { .campos { grid-template-columns:1fr 1fr; } .campos .ancho { grid-column:1 / -1; } }
+  .campos > .campo { min-width:0; }
+  @media (min-width:600px) { .campos { grid-template-columns:minmax(0,1fr) minmax(0,1fr); } .campos .ancho { grid-column:1 / -1; } }
+  .campo input[type="date"] { -webkit-appearance:none; appearance:none; display:block; min-width:0; max-width:100%; line-height:46px; text-align:left; -webkit-min-logical-width: calc(100% - 28px); }
+  .campo input[type="date"]::-webkit-date-and-time-value { text-align:left; }
   .campo label { display:block; font-size:13px; color:var(--gris); letter-spacing:.04em; margin-bottom:6px; }
   .campo input, .campo select { width:100%; height:48px; padding:0 14px; border:1px solid var(--borde); border-radius:6px; background:rgba(9,5,15,.7); color:var(--hueso); font:500 16px 'Inter', sans-serif; outline:none; transition:border-color .2s, box-shadow .2s; }
   .campo input:focus { border-color:var(--neon2); box-shadow:0 0 0 3px rgba(176,123,255,.2); }
@@ -377,62 +380,8 @@
     <p class="nota">Cada boleto es un código QR personal. Si compras varios, recibes uno por persona y los repartes por WhatsApp.</p>
   </section>
 
-  <section id="como">
-    <h2>Cómo comprar</h2>
-    <div class="pasos">
-      <div class="panel paso"><div class="num">I</div><div><h3>Transfiere</h3><p>Al abrir el formulario ves la CLABE. Transfiere el monto exacto: precio por número de boletos.</p></div></div>
-      <div class="panel paso"><div class="num">II</div><div><h3>Regístrate</h3><p>Nombre, correo, WhatsApp, cuántos boletos y el monto que transferiste. Sin cuentas ni contraseñas, dos minutos.</p></div></div>
-      <div class="panel paso"><div class="num">III</div><div><h3>Recibe tus QR</h3><p>Cuando confirmemos el pago te llega un correo con un QR por cada boleto. Reenvía a cada quien el suyo.</p></div></div>
-    </div>
-  </section>
 
-  <section id="reglas">
-    <h2>Reglas de la casa</h2>
-    <div class="reglas">
-      <div class="panel regla"><h3>El lugar se revela el 30 de octubre</h3><p>Lo publicamos en Instagram, en <a href="https://www.instagram.com/happy_halloween8/" target="_blank" rel="noopener">@happy_halloween8</a>. Sigue la cuenta para no perdértelo.</p></div>
-      <div class="panel regla"><h3>Sin disfraz no entras, ni con boleto</h3><p>Hay concurso de disfraces con premios en efectivo. Tómalo en serio.</p></div>
-      <div class="panel regla"><h3>Solo mayores de 18</h3><p>Trae identificación oficial; se pide en la puerta.</p></div>
-      <div class="panel regla"><h3>Tu QR entra una sola vez</h3><p>Al llegar, fila de preventa y muéstralo en el celular o impreso. No lo compartas: quien lo presenta primero, entra.</p></div>
-    </div>
-  </section>
-
-  <section id="faq">
-    <h2>Preguntas frecuentes</h2>
-    <details><summary>¿Cuánto tarda en llegar mi boleto?</summary><p>Los pagos se confirman a lo largo del día y el QR llega minutos después. Revisa spam y promociones: el correo sale de happyhallow33n2026@gmail.com.</p></details>
-    <details><summary>Compré varios boletos. ¿Cómo se los doy a mis amigos?</summary><p>Te llegan todos a tu correo, uno por persona, con su número (1 de 4, 2 de 4…). Cada boleto tiene un botón para mandarlo por WhatsApp. Cada quien entra por su cuenta.</p></details>
-    <details><summary>Pagó otra persona por mí</summary><p>Sin problema. En el formulario hay un campo para el nombre del titular de la cuenta que transfirió.</p></details>
-    <details><summary>¿Puedo pagar en la puerta?</summary><p>Sí, cover en efectivo la noche del evento, a precio de puerta y sujeto a disponibilidad. Es otra fila.</p></details>
-    <details><summary>No me llegó el correo</summary><p>Escríbenos por Instagram con el nombre con el que te registraste. Lo revisamos y te lo reenviamos.</p></details>
-    <details><summary>¿Hay reembolsos?</summary><p>No. Puedes regalar o vender tu QR: quien lo presente primero, entra.</p></details>
-  </section>
 </main>
-
-<section class="umbral" id="entrada">
-  <p class="invitacion">Abrimos a las 19:00</p>
-  <div class="fachada">
-    <i class="antorcha izq"></i><i class="antorcha der"></i>
-    <div class="puerta" id="puerta">
-      <div class="marco"></div>
-      <div class="interior">
-        <div class="piso"></div><div class="luz"></div><div class="rayos"></div>
-        <svg class="sombra" viewBox="0 0 60 160" xmlns="http://www.w3.org/2000/svg"><path d="M30 6c-8 0-13 7-13 15 0 6 3 11 7 14v9c-9 3-16 10-17 20l-3 40c0 3 2 5 5 5l4-38 2 40h8l2-42h2l2 42h8l2-40 4 38c3 0 5-2 5-5l-3-40c-1-10-8-17-17-20v-9c4-3 7-8 7-14 0-8-5-15-13-15z"/></svg>
-        <div class="humo"></div>
-        <p class="texto">Nos vemos adentro</p>
-        <a class="cta" href="#comprar">Comprar boletos</a>
-      </div>
-      <div class="hoja izq"><i class="vetas"></i><i class="grietas"></i><i class="mancha"></i><i class="banda a"></i><i class="banda b"></i><i class="bisagra a"></i><i class="bisagra b"></i><i class="bisagra c"></i><i class="aro"></i></div>
-      <div class="hoja der"><i class="vetas"></i><i class="grietas"></i><i class="mancha"></i><i class="banda a"></i><i class="banda b"></i><i class="bisagra a"></i><i class="bisagra b"></i><i class="bisagra c"></i><i class="aro"></i><i class="cerradura" id="cerradura"></i></div>
-    </div>
-    <p class="toca" id="toca">Toca la puerta para entrar</p>
-  </div>
-  <p class="pie">Preventa en línea hasta el 29 de octubre.</p>
-  <div class="contacto">
-    <a href="https://ig.me/m/happy_halloween8" target="_blank" rel="noopener">¿Dudas? Escríbenos por Instagram</a>
-    <a href="https://www.instagram.com/happy_halloween8/" target="_blank" rel="noopener">@happy_halloween8</a>
-  </div>
-</section>
-
-
 <section class="compra col" id="comprar">
   <h2>Comprar boletos</h2>
   <p class="intro">Tres pasos, sin crear cuenta. Los boletos te llegan por correo cuando confirmemos tu transferencia.</p>
@@ -487,7 +436,56 @@
     <a class="otro" href="#comprar" id="otroRegistro">Registrar otra compra</a>
   </div>
 </section>
+<main class="col">
+  <section id="reglas">
+    <h2>Reglas de la casa</h2>
+    <div class="reglas">
+      <div class="panel regla"><h3>El lugar se revela el 30 de octubre</h3><p>Lo publicamos en Instagram, en <a href="https://www.instagram.com/happy_halloween8/" target="_blank" rel="noopener">@happy_halloween8</a>. Sigue la cuenta para no perdértelo.</p></div>
+      <div class="panel regla"><h3>Sin disfraz no entras, ni con boleto</h3><p>Hay concurso de disfraces con premios en efectivo. Tómalo en serio.</p></div>
+      <div class="panel regla"><h3>Solo mayores de 18</h3><p>Trae identificación oficial; se pide en la puerta.</p></div>
+      <div class="panel regla"><h3>Tu QR entra una sola vez</h3><p>Al llegar, fila de preventa y muéstralo en el celular o impreso. No lo compartas: quien lo presenta primero, entra.</p></div>
+    </div>
+  </section>
 
+  <section id="faq">
+    <h2>Preguntas frecuentes</h2>
+    <details><summary>¿Cuánto tarda en llegar mi boleto?</summary><p>Los pagos se confirman a lo largo del día y el QR llega minutos después. Revisa spam y promociones: el correo sale de happyhallow33n2026@gmail.com.</p></details>
+    <details><summary>Compré varios boletos. ¿Cómo se los doy a mis amigos?</summary><p>Te llegan todos a tu correo, uno por persona, con su número (1 de 4, 2 de 4…). Cada boleto tiene un botón para mandarlo por WhatsApp. Cada quien entra por su cuenta.</p></details>
+    <details><summary>Pagó otra persona por mí</summary><p>Sin problema. En el formulario hay un campo para el nombre del titular de la cuenta que transfirió.</p></details>
+    <details><summary>¿Puedo pagar en la puerta?</summary><p>Sí, cover en efectivo la noche del evento, a precio de puerta y sujeto a disponibilidad. Es otra fila.</p></details>
+    <details><summary>No me llegó el correo</summary><p>Escríbenos por Instagram con el nombre con el que te registraste. Lo revisamos y te lo reenviamos.</p></details>
+    <details><summary>¿Hay reembolsos?</summary><p>No. Puedes regalar o vender tu QR: quien lo presente primero, entra.</p></details>
+  </section>
+</main>
+
+
+
+
+
+<section class="umbral" id="entrada">
+  <p class="invitacion">Abrimos a las 19:00</p>
+  <div class="fachada">
+    <i class="antorcha izq"></i><i class="antorcha der"></i>
+    <div class="puerta" id="puerta">
+      <div class="marco"></div>
+      <div class="interior">
+        <div class="piso"></div><div class="luz"></div><div class="rayos"></div>
+        <svg class="sombra" viewBox="0 0 60 160" xmlns="http://www.w3.org/2000/svg"><path d="M30 6c-8 0-13 7-13 15 0 6 3 11 7 14v9c-9 3-16 10-17 20l-3 40c0 3 2 5 5 5l4-38 2 40h8l2-42h2l2 42h8l2-40 4 38c3 0 5-2 5-5l-3-40c-1-10-8-17-17-20v-9c4-3 7-8 7-14 0-8-5-15-13-15z"/></svg>
+        <div class="humo"></div>
+        <p class="texto">Nos vemos adentro</p>
+        <a class="cta" href="#comprar">Comprar boletos</a>
+      </div>
+      <div class="hoja izq"><i class="vetas"></i><i class="grietas"></i><i class="mancha"></i><i class="banda a"></i><i class="banda b"></i><i class="bisagra a"></i><i class="bisagra b"></i><i class="bisagra c"></i><i class="aro"></i></div>
+      <div class="hoja der"><i class="vetas"></i><i class="grietas"></i><i class="mancha"></i><i class="banda a"></i><i class="banda b"></i><i class="bisagra a"></i><i class="bisagra b"></i><i class="bisagra c"></i><i class="aro"></i><i class="cerradura" id="cerradura"></i></div>
+    </div>
+    <p class="toca" id="toca">Toca la puerta para entrar</p>
+  </div>
+  <p class="pie">Preventa en línea hasta el 29 de octubre.</p>
+  <div class="contacto">
+    <a href="https://ig.me/m/happy_halloween8" target="_blank" rel="noopener">¿Dudas? Escríbenos por Instagram</a>
+    <a href="https://www.instagram.com/happy_halloween8/" target="_blank" rel="noopener">@happy_halloween8</a>
+  </div>
+</section>
 <!-- Buzón: el envío real va al Google Forms, sin que la persona lo vea -->
 <iframe name="buzon" id="buzon" title="buzón" style="display:none" tabindex="-1"></iframe>
 <form id="gform" method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLSc9i023c5VqIR43KZ4j0HDWPNGMOxcDozGWu30r89BaMZht9g/formResponse" target="buzon" style="display:none">
