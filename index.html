@@ -268,6 +268,61 @@
   .sonido { position:fixed; top:12px; right:12px; z-index:60; width:34px; height:34px; border-radius:50%; background:rgba(9,5,15,.6); border:1px solid var(--borde); color:var(--lila); font-size:15px; line-height:32px; text-align:center; cursor:pointer; opacity:.55; }
   .sonido:hover { opacity:1; }
 
+  /* ---------- comprar: el formulario dentro de la landing ---------- */
+  .compra { padding:56px 0 20px; }
+  .compra .intro { color:var(--gris); margin:-8px 0 22px; }
+  .pasoc { margin-bottom:14px; }
+  .pasoc .enc { display:flex; align-items:center; gap:14px; margin-bottom:14px; }
+  .pasoc .enc .n { font-family:'Cinzel', serif; font-size:22px; color:var(--oro); min-width:28px; }
+  .pasoc .enc h3 { font-size:15px; letter-spacing:.12em; text-transform:uppercase; }
+  .tipos { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .tipo { border:1px solid var(--borde); border-radius:6px; padding:14px; background:rgba(9,5,15,.6); cursor:pointer; text-align:left; color:var(--hueso); font:inherit; transition:border-color .2s, box-shadow .2s; }
+  .tipo b { display:block; font-family:'Cinzel', serif; font-size:26px; line-height:1.1; }
+  .tipo span { display:block; font-size:14px; color:var(--gris); margin-top:4px; }
+  .tipo.general b { color:var(--gen); } .tipo.vip b { color:var(--vip); }
+  .tipo[aria-pressed="true"] { border-color:var(--oro); box-shadow:0 0 0 1px rgba(230,199,116,.35), 0 10px 30px rgba(139,61,255,.25); background:rgba(28,16,48,.8); }
+  .cantidad { display:flex; align-items:center; gap:14px; margin-top:14px; }
+  .cantidad label { color:var(--gris); font-size:15px; }
+  .contador { display:inline-flex; align-items:center; border:1px solid var(--borde); border-radius:6px; overflow:hidden; background:rgba(9,5,15,.6); }
+  .contador button { width:44px; height:44px; border:0; background:transparent; color:var(--lila); font-size:22px; cursor:pointer; }
+  .contador input { width:56px; height:44px; border:0; background:transparent; color:var(--hueso); text-align:center; font:600 18px 'Inter', sans-serif; -moz-appearance:textfield; }
+  .contador input::-webkit-outer-spin-button, .contador input::-webkit-inner-spin-button { -webkit-appearance:none; }
+  .total { margin-top:16px; padding:14px 16px; border-radius:6px; background:linear-gradient(180deg, rgba(139,61,255,.18), rgba(139,61,255,.06)); border:1px solid var(--borde); display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap; }
+  .total .lbl { color:var(--gris); font-size:15px; }
+  .total b { font-family:'Cinzel', serif; font-size:30px; color:var(--oro); }
+  .total small { display:block; color:var(--gris); font-size:13px; width:100%; }
+  .datos { display:grid; gap:10px; }
+  .dato { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 14px; border:1px solid var(--borde); border-radius:6px; background:rgba(9,5,15,.6); }
+  .dato .k { color:var(--gris); font-size:13px; letter-spacing:.06em; text-transform:uppercase; }
+  .dato .v { font-weight:600; font-size:17px; letter-spacing:.02em; }
+  .dato .v.mono { font-family:'Inter', sans-serif; font-variant-numeric:tabular-nums; letter-spacing:.06em; }
+  .copiar { border:1px solid var(--borde); background:rgba(139,61,255,.15); color:var(--lila); border-radius:5px; padding:8px 12px; font:600 13px 'Inter', sans-serif; cursor:pointer; white-space:nowrap; }
+  .copiar.ok { color:var(--oro); border-color:rgba(230,199,116,.6); }
+  .aviso-pago { margin-top:12px; color:var(--gris); font-size:14px; }
+  .campos { display:grid; gap:12px; }
+  @media (min-width:600px) { .campos { grid-template-columns:1fr 1fr; } .campos .ancho { grid-column:1 / -1; } }
+  .campo label { display:block; font-size:13px; color:var(--gris); letter-spacing:.04em; margin-bottom:6px; }
+  .campo input, .campo select { width:100%; height:48px; padding:0 14px; border:1px solid var(--borde); border-radius:6px; background:rgba(9,5,15,.7); color:var(--hueso); font:500 16px 'Inter', sans-serif; outline:none; transition:border-color .2s, box-shadow .2s; }
+  .campo input:focus { border-color:var(--neon2); box-shadow:0 0 0 3px rgba(176,123,255,.2); }
+  .campo input.mal { border-color:#e0303c; box-shadow:0 0 0 3px rgba(224,48,60,.2); }
+  .campo .err { display:none; color:#ff7b84; font-size:13px; margin-top:6px; }
+  .campo.malo .err { display:block; }
+  .campo small { display:block; color:var(--gris); font-size:12px; margin-top:6px; }
+  .acepto { display:flex; gap:12px; align-items:flex-start; margin-top:6px; color:var(--gris); font-size:14px; line-height:1.5; }
+  .acepto input { width:20px; height:20px; margin-top:2px; accent-color:#8b3dff; flex:none; }
+  .enviar { margin-top:18px; width:100%; border:0; cursor:pointer; }
+  .enviar[disabled] { opacity:.6; cursor:wait; }
+  .estado { margin-top:14px; font-size:15px; color:var(--gris); min-height:22px; }
+  .estado.error { color:#ff7b84; }
+  .exito { text-align:center; padding:28px 10px; }
+  .exito .sello { width:64px; height:64px; margin:0 auto 18px; border-radius:50%; border:2px solid var(--oro); display:flex; align-items:center; justify-content:center; font-family:'Cinzel', serif; font-size:30px; color:var(--oro); box-shadow:0 0 30px rgba(230,199,116,.35); }
+  .exito h3 { font-size:22px; letter-spacing:.1em; text-transform:uppercase; margin-bottom:10px; }
+  .exito p { color:var(--gris); }
+  .exito .otro { display:inline-block; margin-top:18px; color:var(--lila); }
+  .cerrada { text-align:center; padding:24px 10px; color:var(--gris); }
+  .respaldo { margin-top:14px; text-align:center; font-size:13px; color:var(--gris); }
+  .respaldo a { color:var(--gris); }
+
   @media (prefers-reduced-motion: reduce) {
     .lluvia, .relampago.trueno, .marco-cartel.iluminado .destello, .rayos, .humo, .ojos i, .cuervo, .nube { animation:none !important; }
     body.lista .portada h1 { animation: aparecer 1.2s ease 1.4s forwards; }
@@ -294,7 +349,7 @@
     <h1>Happy Halloween 8</h1>
     <p class="cuando">Sábado 31 de octubre · 19:00 · Ciudad de México<span>+18 · Disfraz obligatorio · Concurso de disfraces con premios en efectivo</span></p>
     <p class="cuenta" id="cuenta">Faltan …</p>
-    <p class="accion"><a class="cta" href="https://forms.gle/P337zzuQoxzRYwBS6" target="_blank" rel="noopener">Comprar boletos</a><small>Preventa en línea hasta el 29 de octubre. Después, solo cover en puerta.</small></p>
+    <p class="accion"><a class="cta" href="#comprar">Comprar boletos</a><small>Preventa en línea hasta el 29 de octubre. Después, solo cover en puerta.</small></p>
   </div>
 </header>
 
@@ -363,7 +418,7 @@
         <svg class="sombra" viewBox="0 0 60 160" xmlns="http://www.w3.org/2000/svg"><path d="M30 6c-8 0-13 7-13 15 0 6 3 11 7 14v9c-9 3-16 10-17 20l-3 40c0 3 2 5 5 5l4-38 2 40h8l2-42h2l2 42h8l2-40 4 38c3 0 5-2 5-5l-3-40c-1-10-8-17-17-20v-9c4-3 7-8 7-14 0-8-5-15-13-15z"/></svg>
         <div class="humo"></div>
         <p class="texto">Nos vemos adentro</p>
-        <a class="cta" href="https://forms.gle/P337zzuQoxzRYwBS6" target="_blank" rel="noopener">Comprar boletos</a>
+        <a class="cta" href="#comprar">Comprar boletos</a>
       </div>
       <div class="hoja izq"><i class="vetas"></i><i class="grietas"></i><i class="mancha"></i><i class="banda a"></i><i class="banda b"></i><i class="bisagra a"></i><i class="bisagra b"></i><i class="bisagra c"></i><i class="aro"></i></div>
       <div class="hoja der"><i class="vetas"></i><i class="grietas"></i><i class="mancha"></i><i class="banda a"></i><i class="banda b"></i><i class="bisagra a"></i><i class="bisagra b"></i><i class="bisagra c"></i><i class="aro"></i><i class="cerradura" id="cerradura"></i></div>
@@ -377,13 +432,84 @@
   </div>
 </section>
 
+
+<section class="compra col" id="comprar">
+  <h2>Comprar boletos</h2>
+  <p class="intro">Tres pasos, sin crear cuenta. Los boletos te llegan por correo cuando confirmemos tu transferencia.</p>
+
+  <div id="cerrada" class="panel cerrada" hidden>La preventa en línea cerró el 29 de octubre. La noche del evento hay cover en la puerta, sujeto a disponibilidad.</div>
+
+  <div id="flujo">
+    <div class="panel pasoc">
+      <div class="enc"><span class="n">I</span><h3>Elige</h3></div>
+      <div class="tipos">
+        <button type="button" class="tipo general" data-tipo="General" aria-pressed="true"><b id="pGen">$—</b><span>General</span></button>
+        <button type="button" class="tipo vip" data-tipo="VIP" aria-pressed="false"><b id="pVip">$—</b><span>VIP</span></button>
+      </div>
+      <div class="cantidad"><label for="cant">Boletos</label><span class="contador"><button type="button" id="menos" aria-label="Menos">−</button><input id="cant" type="number" min="1" max="50" value="1" inputmode="numeric"><button type="button" id="mas" aria-label="Más">+</button></span></div>
+      <div class="total"><span class="lbl">Transfiere exactamente</span><b id="total">$—</b><small id="faseTxt"></small></div>
+    </div>
+
+    <div class="panel pasoc">
+      <div class="enc"><span class="n">II</span><h3>Transfiere</h3></div>
+      <div class="datos">
+        <div class="dato"><div><div class="k">Banco</div><div class="v">Banco Azteca</div></div></div>
+        <div class="dato"><div><div class="k">Beneficiario</div><div class="v">André Espinoza</div></div></div>
+        <div class="dato"><div><div class="k">CLABE</div><div class="v mono" id="clabe">127180013950025695</div></div><button type="button" class="copiar" data-copia="127180013950025695">Copiar</button></div>
+        <div class="dato"><div><div class="k">Monto</div><div class="v mono" id="montoTxt">$—</div></div><button type="button" class="copiar" id="copiarMonto">Copiar</button></div>
+      </div>
+      <p class="aviso-pago">Hazlo desde la app de tu banco por SPEI. Guarda el comprobante: si no encontramos tu pago te lo pediremos por WhatsApp.</p>
+    </div>
+
+    <div class="panel pasoc">
+      <div class="enc"><span class="n">III</span><h3>Regístrate</h3></div>
+      <div class="campos">
+        <div class="campo ancho"><label for="nombre">Nombre completo</label><input id="nombre" autocomplete="name" maxlength="120"><div class="err">Escribe tu nombre.</div></div>
+        <div class="campo"><label for="correo">Correo (aquí llegan tus QR)</label><input id="correo" type="email" inputmode="email" autocomplete="email"><div class="err">Escribe un correo válido.</div></div>
+        <div class="campo"><label for="whats">WhatsApp</label><input id="whats" inputmode="numeric" placeholder="10 dígitos" maxlength="10"><div class="err">Solo 10 dígitos, sin espacios ni +52.</div></div>
+        <div class="campo"><label for="fecha">Fecha de la transferencia</label><input id="fecha" type="date"><div class="err">Elige la fecha.</div></div>
+        <div class="campo"><label for="monto">Monto transferido</label><input id="monto" inputmode="decimal" placeholder="Solo número"><small>Debe coincidir con tu comprobante.</small><div class="err">Escribe solo el número, por ejemplo 540.</div></div>
+        <div class="campo ancho"><label for="titular">Titular de la cuenta que transfirió (solo si no fuiste tú)</label><input id="titular" maxlength="120"></div>
+      </div>
+      <label class="acepto"><input type="checkbox" id="acepto"><span>Entiendo que cada QR es personal y de un solo uso, que los boletos no son reembolsables, y acepto el <a href="#privacidad">aviso de privacidad</a>.</span></label>
+      <div class="campo" id="campoAcepto"><div class="err">Marca la casilla para continuar.</div></div>
+      <button type="button" class="cta enviar" id="enviar">Enviar registro</button>
+      <div class="estado" id="estado"></div>
+      <p class="respaldo">¿Problemas con este formulario? <a id="respaldo" href="https://forms.gle/P337zzuQoxzRYwBS6" target="_blank" rel="noopener">Ábrelo en Google Forms</a>.</p>
+    </div>
+  </div>
+
+  <div id="exito" class="panel exito" hidden>
+    <div class="sello">✓</div>
+    <h3>Recibimos tu registro</h3>
+    <p id="exitoTxt">Cuando confirmemos tu transferencia, tus QR llegan a tu correo desde happyhallow33n2026@gmail.com. Revisa también spam y promociones.</p>
+    <p style="margin-top:10px">Nos vemos el 31.</p>
+    <a class="otro" href="#comprar" id="otroRegistro">Registrar otra compra</a>
+  </div>
+</section>
+
+<!-- Buzón: el envío real va al Google Forms, sin que la persona lo vea -->
+<iframe name="buzon" id="buzon" title="buzón" style="display:none" tabindex="-1"></iframe>
+<form id="gform" method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLSc9i023c5VqIR43KZ4j0HDWPNGMOxcDozGWu30r89BaMZht9g/formResponse" target="buzon" style="display:none">
+  <input name="entry.74629995" id="g_nombre">
+  <input name="entry.1227756395" id="g_correo">
+  <input name="entry.458790877" id="g_whats">
+  <input name="entry.2020863651" id="g_tipo">
+  <input name="entry.595690662" id="g_cant">
+  <input name="entry.72309985_year" id="g_y"><input name="entry.72309985_month" id="g_m"><input name="entry.72309985_day" id="g_d">
+  <input name="entry.1881503646" id="g_monto">
+  <input name="entry.83467513" id="g_titular">
+  <input name="entry.733694511" value="Entiendo que cada QR es personal y de un solo uso, y que los boletos no son reembolsables">
+  <input name="fvv" value="1"><input name="pageHistory" value="0">
+</form>
+
 <section id="privacidad" class="col" style="padding:10px 0 0">
   <details><summary>Aviso de privacidad</summary>
     <p><strong>Responsable:</strong> Legacy, organizador del evento Happy Halloween 8, con contacto en happyhallow33n2026@gmail.com. <strong>Datos que recabamos:</strong> nombre, correo electrónico, número de WhatsApp y los datos de tu transferencia (fecha, monto y, en su caso, nombre del titular de la cuenta). <strong>Para qué los usamos:</strong> registrar tu compra, verificar tu pago, emitir y validar tus boletos y contactarte si hay algún problema con tu compra; si nos lo autorizas, también para avisarte de próximas ediciones. <strong>Con quién se comparten:</strong> con nadie. Solo los ve el equipo organizador y se almacenan en servicios de Google (Formularios, Hojas de cálculo, Drive y Gmail) bajo la cuenta del evento. <strong>Cuánto tiempo:</strong> el WhatsApp y los datos de la transferencia se borran dentro de los 30 días posteriores al evento; el nombre y el correo se conservan solo si aceptaste recibir avisos de próximas ediciones. <strong>Tus derechos:</strong> puedes pedir acceder, corregir o borrar tus datos, o retirar tu consentimiento, escribiendo a happyhallow33n2026@gmail.com o por Instagram a @happy_halloween8. Respondemos en un máximo de 20 días hábiles.</p>
   </details>
 </section>
 
-<a class="cta flotante" href="https://forms.gle/P337zzuQoxzRYwBS6" target="_blank" rel="noopener">Comprar boletos</a>
+<a class="cta flotante" href="#comprar">Comprar boletos</a>
 
 <footer>Happy Halloween 8 · Legacy · Ciudad de México · <a href="#privacidad">Aviso de privacidad</a></footer>
 
@@ -522,6 +648,100 @@
     cerradura.style.setProperty('--brillo', String(.15 + e.intersectionRatio * .85));
   }), { threshold: [0, .2, .4, .6, .8, 1] });
   obs.observe(puerta);
+
+
+  // ---------- Comprar: calculadora, copiar, validación y envío al buzón de Google Forms ----------
+  const FASES = [
+    { nombre: 'Fase 1', ini: '2026-09-10', fin: '2026-09-30', general: 180, vip: 270 },
+    { nombre: 'Fase 2', ini: '2026-10-01', fin: '2026-10-29', general: 200, vip: 300 },
+  ];
+  const faseHoy = FASES.find(f => hoy >= f.ini && hoy <= f.fin) || null;
+  const mxn = n => '$' + Number(n).toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const $ = id => document.getElementById(id);
+  let tipoSel = 'General';
+
+  if (!faseHoy) { $('cerrada').hidden = false; $('flujo').hidden = true; }
+  else {
+    $('pGen').textContent = mxn(faseHoy.general); $('pVip').textContent = mxn(faseHoy.vip);
+    $('faseTxt').textContent = faseHoy.nombre + ' · vigente hasta el ' + (faseHoy.fin === '2026-09-30' ? '30 de septiembre' : '29 de octubre');
+  }
+  function total() { if (!faseHoy) return 0; const n = Math.max(1, parseInt($('cant').value, 10) || 1); return (tipoSel === 'VIP' ? faseHoy.vip : faseHoy.general) * n; }
+  function pintar() {
+    const t = total();
+    $('total').textContent = mxn(t); $('montoTxt').textContent = mxn(t);
+    $('copiarMonto').dataset.copia = String(t);
+    if (!$('monto').dataset.tocado) $('monto').value = t ? String(t) : '';
+    $('cant').value = Math.min(50, Math.max(1, parseInt($('cant').value, 10) || 1));
+  }
+  document.querySelectorAll('.tipo').forEach(b => b.addEventListener('click', () => {
+    tipoSel = b.dataset.tipo;
+    document.querySelectorAll('.tipo').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    pintar();
+  }));
+  $('menos').addEventListener('click', () => { $('cant').value = Math.max(1, (parseInt($('cant').value, 10) || 1) - 1); pintar(); });
+  $('mas').addEventListener('click', () => { $('cant').value = Math.min(50, (parseInt($('cant').value, 10) || 1) + 1); pintar(); });
+  $('cant').addEventListener('input', pintar);
+  $('monto').addEventListener('input', () => { $('monto').dataset.tocado = '1'; });
+  pintar();
+
+  // Fecha: hoy en CDMX por defecto
+  $('fecha').value = hoy; $('fecha').max = hoy;
+
+  document.querySelectorAll('.copiar').forEach(b => b.addEventListener('click', async () => {
+    const texto = b.dataset.copia || '';
+    try { await navigator.clipboard.writeText(texto); } catch (e) {
+      const ta = document.createElement('textarea'); ta.value = texto; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (x) {} ta.remove();
+    }
+    const antes = b.textContent; b.textContent = 'Copiado'; b.classList.add('ok');
+    setTimeout(() => { b.textContent = antes; b.classList.remove('ok'); }, 1600);
+  }));
+
+  // Validación (la misma que exige el Google Forms, para que nunca rechace un envío)
+  function marcar(id, malo) { const c = $(id).closest('.campo'); c.classList.toggle('malo', malo); $(id).classList.toggle('mal', malo); return !malo; }
+  function validar() {
+    let ok = true;
+    ok = marcar('nombre', $('nombre').value.trim().length < 2) && ok;
+    ok = marcar('correo', !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($('correo').value.trim())) && ok;
+    ok = marcar('whats', !/^[0-9]{10}$/.test($('whats').value.trim())) && ok;
+    ok = marcar('fecha', !/^\d{4}-\d{2}-\d{2}$/.test($('fecha').value)) && ok;
+    const m = parseFloat(String($('monto').value).replace(/[^0-9.]/g, ''));
+    ok = marcar('monto', !(m > 0)) && ok;
+    $('campoAcepto').classList.toggle('malo', !$('acepto').checked); ok = $('acepto').checked && ok;
+    return ok;
+  }
+
+  let enviado = false, temporizador = null;
+  $('enviar').addEventListener('click', () => {
+    if (!faseHoy) return;
+    if (!validar()) { $('estado').textContent = 'Revisa los campos marcados.'; $('estado').className = 'estado error'; return; }
+    const [y, mo, d] = $('fecha').value.split('-');
+    $('g_nombre').value = $('nombre').value.trim();
+    $('g_correo').value = $('correo').value.trim().toLowerCase();
+    $('g_whats').value = $('whats').value.trim();
+    $('g_tipo').value = tipoSel;
+    $('g_cant').value = String(Math.max(1, parseInt($('cant').value, 10) || 1));
+    $('g_y').value = y; $('g_m').value = String(Number(mo)); $('g_d').value = String(Number(d));
+    $('g_monto').value = String(parseFloat(String($('monto').value).replace(/[^0-9.]/g, '')));
+    $('g_titular').value = $('titular').value.trim();
+    // Enlace de respaldo con los mismos datos, por si el envío directo fallara
+    const p = new URLSearchParams({ 'usp': 'pp_url', 'entry.74629995': $('g_nombre').value, 'entry.1227756395': $('g_correo').value, 'entry.458790877': $('g_whats').value, 'entry.2020863651': tipoSel, 'entry.595690662': $('g_cant').value, 'entry.72309985': $('fecha').value, 'entry.1881503646': $('g_monto').value, 'entry.83467513': $('g_titular').value, 'entry.733694511': 'Entiendo que cada QR es personal y de un solo uso, y que los boletos no son reembolsables' });
+    $('respaldo').href = 'https://docs.google.com/forms/d/e/1FAIpQLSc9i023c5VqIR43KZ4j0HDWPNGMOxcDozGWu30r89BaMZht9g/viewform?' + p.toString();
+    $('enviar').disabled = true; $('estado').className = 'estado'; $('estado').textContent = 'Enviando…';
+    enviado = true;
+    $('gform').submit();
+    temporizador = setTimeout(() => { if (enviado) { $('enviar').disabled = false; $('estado').className = 'estado error'; $('estado').innerHTML = 'No pudimos confirmar el envío. <a href="' + $('respaldo').href + '" target="_blank" rel="noopener">Termina tu registro aquí</a>: ya lleva tus datos.'; } }, 9000);
+  });
+  $('buzon').addEventListener('load', () => {
+    if (!enviado) return;
+    enviado = false; clearTimeout(temporizador);
+    $('flujo').hidden = true; $('exito').hidden = false;
+    $('exitoTxt').textContent = 'Cuando confirmemos tu transferencia, tus ' + ($('g_cant').value === '1' ? 'QR llega' : $('g_cant').value + ' QR llegan') + ' a ' + $('g_correo').value + ' desde happyhallow33n2026@gmail.com. Revisa también spam y promociones.';
+    $('exito').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+  $('otroRegistro').addEventListener('click', () => {
+    $('exito').hidden = true; $('flujo').hidden = false; $('enviar').disabled = false; $('estado').textContent = '';
+    ['nombre', 'correo', 'whats', 'titular'].forEach(id => { $(id).value = ''; }); $('acepto').checked = false; delete $('monto').dataset.tocado; pintar();
+  });
 
   const fondo = document.querySelector('.fondo');
   let programado = false;
