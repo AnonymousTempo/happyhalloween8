@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#050308">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Happy Halloween 8 — 31 de octubre · CDMX">
-<meta property="og:description" content="Preventa en línea. +18, disfraz obligatorio, concurso de disfraces. El lugar se revela el 30 de octubre en Instagram.">
+<meta property="og:description" content="Preventa en línea. +18, disfraz obligatorio, concurso de disfraces con premios en efectivo. El lugar se revela el 30 de octubre en Instagram.">
 <meta property="og:image" content="https://anonymoustempo.github.io/happyhalloween8/og.jpg">
 <meta property="og:url" content="https://anonymoustempo.github.io/happyhalloween8/">
 <meta name="twitter:card" content="summary_large_image">
@@ -139,7 +139,55 @@
   footer { position:relative; z-index:2; text-align:center; color:var(--gris); font-size:14px; padding:34px 0 40px; }
   footer a { color:var(--gris); }
 
+
+  /* tormenta recurrente */
+  .relampago.trueno { animation: flashCorto .75s linear forwards; }
+  @keyframes flashCorto { 0%, 30%, 45%, 100% { opacity:0 } 8% { opacity:.5 } 38% { opacity:.25 } }
+  .marco-cartel { position:relative; width:min(560px, 100% - 36px); margin:0 auto; border-radius:4px; overflow:hidden; }
+  .marco-cartel .cartel { width:100%; margin:0; }
+  .marco-cartel.iluminado .cartel { animation: destello .75s linear forwards; }
+  @keyframes destello { 0%, 30%, 45%, 100% { filter:brightness(1) } 8% { filter:brightness(1.8) saturate(1.2) } 38% { filter:brightness(1.35) } }
+  .lluvia { position:absolute; inset:-20% 0 0 0; pointer-events:none; opacity:.28; mix-blend-mode:screen;
+            background: repeating-linear-gradient(102deg, transparent 0 8px, rgba(220,210,255,.7) 8px 9px, transparent 9px 22px);
+            background-size: 100% 220px; animation: caer 1.2s linear infinite; }
+  .lluvia.b { opacity:.16; background-size:100% 340px; animation-duration:1.9s; background-position:60px 0; }
+  @keyframes caer { to { background-position: 0 220px } }
+  .lluvia.b { animation-name: caerB; } @keyframes caerB { to { background-position: 60px 340px } }
+
+  /* neón que falla */
+  body.lista .portada h1 { animation: aparecer 1.2s ease 1.4s forwards, neon 9s linear 4s infinite; }
+  @keyframes neon { 0%, 100% { opacity:1; text-shadow:0 0 34px rgba(139,61,255,.5) } 41% { opacity:1 } 42% { opacity:.55; text-shadow:none } 43% { opacity:1 } 44.5% { opacity:.7 } 45% { opacity:1 } 86% { opacity:1 } 86.4% { opacity:.6 } 86.8% { opacity:1 } }
+
+  /* linterna que sigue el cursor (solo con mouse) */
+  .linterna { position:fixed; left:0; top:0; width:360px; height:360px; margin:-180px 0 0 -180px; border-radius:50%; pointer-events:none; z-index:1; opacity:0; transition:opacity .6s;
+              background: radial-gradient(circle, rgba(176,123,255,.28) 0%, rgba(139,61,255,.12) 35%, transparent 70%); mix-blend-mode:screen; will-change:transform; }
+  @media (hover:hover) and (pointer:fine) { body.conmouse .linterna { opacity:1 } }
+
+  /* puerta: bisagras, cerradura, vetas, rayos y humo */
+  .hoja { background: linear-gradient(90deg, #2a1c2e 0%, #3b2a3c 18%, #22161f 40%, #3a2938 60%, #1d1219 82%, #2a1c2e 100%); }
+  .hoja .vetas { position:absolute; inset:0; opacity:.35; border-radius:inherit; background: repeating-linear-gradient(180deg, rgba(0,0,0,0) 0 6px, rgba(0,0,0,.18) 6px 7px, rgba(255,255,255,.03) 7px 9px), repeating-linear-gradient(90deg, rgba(0,0,0,.25) 0 1px, transparent 1px 34%); }
+  .bisagra { position:absolute; width:22px; height:9px; background:linear-gradient(180deg, #7a6a58, #3e342b); border-radius:2px; box-shadow:0 1px 3px rgba(0,0,0,.7); }
+  .hoja.izq .bisagra { left:-4px; } .hoja.der .bisagra { right:-4px; }
+  .bisagra.a { top:18%; } .bisagra.b { top:50%; } .bisagra.c { top:82%; }
+  .cerradura { position:absolute; left:14px; top:calc(52% + 26px); width:14px; height:22px; border-radius:7px 7px 3px 3px; background:#0a0508; box-shadow: inset 0 0 4px #000, 0 0 0 2px #5b4a3a; overflow:hidden; }
+  .cerradura::after { content:''; position:absolute; inset:2px; border-radius:inherit; background: radial-gradient(circle, #c9a0ff, #6e22e6 60%, transparent 70%); opacity:var(--brillo, .15); transition:opacity .4s; box-shadow:0 0 12px 4px rgba(176,123,255,var(--brillo, .15)); }
+  .puerta .interior .rayos { position:absolute; left:50%; top:50%; width:220%; aspect-ratio:1; transform:translate(-50%,-50%); border-radius:50%; opacity:0; transition:opacity 1.6s ease .6s;
+                             background: repeating-conic-gradient(from 0deg, rgba(214,188,255,.16) 0deg 6deg, transparent 6deg 16deg); animation: girar 60s linear infinite; mix-blend-mode:screen; }
+  @keyframes girar { to { transform:translate(-50%,-50%) rotate(360deg) } }
+  .puerta .interior .humo { position:absolute; left:-20%; right:-20%; bottom:-10%; height:55%; opacity:0; transition:opacity 1.4s ease .9s;
+                             background: radial-gradient(60% 70% at 30% 100%, rgba(230,220,255,.45), transparent 70%), radial-gradient(50% 60% at 70% 100%, rgba(200,180,255,.35), transparent 70%); animation: deriva 22s ease-in-out infinite alternate; }
+  .puerta.abierta .interior .rayos { opacity:1; } .puerta.abierta .interior .humo { opacity:1; }
+  .puerta .interior .luz { transition:transform 2s ease; }
+  .puerta.abierta .interior .luz { transform:translate(-50%,-50%) scale(1.25); }
+  .hoja { transition:transform 2.4s cubic-bezier(.7,0,.22,1); }
+  .puerta { cursor:pointer; }
+  .puerta.abierta { cursor:default; }
+  .toca { margin-top:16px; color:var(--gris); font-size:14px; transition:opacity .5s; }
+  .puerta.abierta ~ .toca { opacity:0; }
+
   @media (prefers-reduced-motion: reduce) {
+    .lluvia, .relampago.trueno, .marco-cartel.iluminado .cartel, .rayos, .humo { animation:none !important; }
+    body.lista .portada h1 { animation: aparecer 1.2s ease 1.4s forwards; }
     .cartel, body.lista .cartel { animation:none; opacity:1; transform:none; filter:none; }
     body.lista .relampago { animation:none; }
     .portada h1, .portada .cuando, .portada .cuenta, .portada .accion { opacity:1 !important; animation:none !important; }
@@ -149,14 +197,14 @@
 </head>
 <body>
 
-<div class="fondo"></div><div class="niebla"></div><div class="niebla b"></div><div class="grano"></div><div class="relampago"></div>
+<div class="fondo"></div><div class="niebla"></div><div class="niebla b"></div><div class="grano"></div><div class="relampago" id="relampago"></div><div class="linterna" id="linterna"></div>
 
 <header class="portada">
   <p class="presenta">Legacy presenta</p>
-  <img class="cartel" src="flyer.jpg" alt="Cartel de Happy Halloween 8">
+  <div class="marco-cartel" id="marco"><img class="cartel" src="flyer.jpg" alt="Cartel de Happy Halloween 8"><div class="lluvia"></div><div class="lluvia b"></div></div>
   <div class="col">
     <h1>Happy Halloween 8</h1>
-    <p class="cuando">Sábado 31 de octubre · 19:00 · Ciudad de México<span>+18 con identificación. Disfraz obligatorio. Concurso de disfraces.</span></p>
+    <p class="cuando">Sábado 31 de octubre · 19:00 · Ciudad de México<span>+18 · Disfraz obligatorio · Concurso de disfraces con premios en efectivo</span></p>
     <p class="cuenta" id="cuenta">Faltan …</p>
     <p class="accion"><a class="cta" href="https://forms.gle/P337zzuQoxzRYwBS6" target="_blank" rel="noopener">Comprar boletos</a><small>Preventa en línea hasta el 29 de octubre. Después, solo cover en puerta.</small></p>
   </div>
@@ -199,7 +247,7 @@
     <h2>Reglas de la casa</h2>
     <div class="reglas">
       <div class="panel regla"><h3>El lugar se revela el 30 de octubre</h3><p>Lo publicamos en Instagram, en <a href="https://www.instagram.com/happy_halloween8/" target="_blank" rel="noopener">@happy_halloween8</a>. Sigue la cuenta para no perdértelo.</p></div>
-      <div class="panel regla"><h3>Sin disfraz no entras, ni con boleto</h3><p>Hay concurso de disfraces. Tómalo en serio.</p></div>
+      <div class="panel regla"><h3>Sin disfraz no entras, ni con boleto</h3><p>Hay concurso de disfraces con premios en efectivo. Tómalo en serio.</p></div>
       <div class="panel regla"><h3>Solo mayores de 18</h3><p>Trae identificación oficial; se pide en la puerta.</p></div>
       <div class="panel regla"><h3>Tu QR entra una sola vez</h3><p>Al llegar, fila de preventa y muéstralo en el celular o impreso. No lo compartas: quien lo presenta primero, entra.</p></div>
     </div>
@@ -221,13 +269,14 @@
   <div class="puerta" id="puerta">
     <div class="marco"></div>
     <div class="interior">
-      <div class="luz"></div>
+      <div class="luz"></div><div class="rayos"></div><div class="humo"></div>
       <p class="texto">Nos vemos adentro</p>
       <a class="cta" href="https://forms.gle/P337zzuQoxzRYwBS6" target="_blank" rel="noopener">Comprar boletos</a>
     </div>
-    <div class="hoja izq"><i class="aro"></i></div>
-    <div class="hoja der"><i class="aro"></i></div>
+    <div class="hoja izq"><i class="vetas"></i><i class="bisagra a"></i><i class="bisagra b"></i><i class="bisagra c"></i><i class="aro"></i></div>
+    <div class="hoja der"><i class="vetas"></i><i class="bisagra a"></i><i class="bisagra b"></i><i class="bisagra c"></i><i class="aro"></i><i class="cerradura" id="cerradura"></i></div>
   </div>
+  <p class="toca" id="toca">Toca la puerta</p>
   <p class="pie">Preventa en línea hasta el 29 de octubre.</p>
   <div class="contacto">
     <a href="https://ig.me/m/happy_halloween8" target="_blank" rel="noopener">¿Dudas? Escríbenos por Instagram</a>
@@ -267,8 +316,48 @@
     else if (hoy >= f.dataset.inicio) f.classList.add('activa');
   });
 
-  const puerta = document.getElementById('puerta');
-  const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { puerta.classList.add('abierta'); obs.disconnect(); } }), { threshold: .55 });
+  // Tormenta: relámpagos a intervalos irregulares, con el cartel iluminándose
+  const relampago = document.getElementById('relampago'), marco = document.getElementById('marco');
+  const reducida = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function tormenta() {
+    if (!reducida && document.body.classList.contains('lista')) {
+      relampago.classList.remove('trueno'); marco.classList.remove('iluminado');
+      void relampago.offsetWidth;
+      relampago.classList.add('trueno'); marco.classList.add('iluminado');
+    }
+    setTimeout(tormenta, 9000 + Math.random() * 14000);
+  }
+  setTimeout(tormenta, 7000);
+
+  // Linterna que sigue el mouse (en celular no existe)
+  const linterna = document.getElementById('linterna');
+  let lx = innerWidth / 2, ly = innerHeight / 2, tx = lx, ty = ly, moviendo = false;
+  addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; document.body.classList.add('conmouse'); if (!moviendo) { moviendo = true; requestAnimationFrame(seguir); } }, { passive: true });
+  function seguir() { lx += (tx - lx) * .12; ly += (ty - ly) * .12; linterna.style.transform = `translate(${lx}px, ${ly}px)`; if (Math.abs(tx - lx) + Math.abs(ty - ly) > .5) requestAnimationFrame(seguir); else moviendo = false; }
+
+  // La puerta: la cerradura brilla al acercarte, se abre al llegar o al tocarla, con golpes
+  const puerta = document.getElementById('puerta'), cerradura = document.getElementById('cerradura');
+  let audio = null;
+  function golpe(cuando) {
+    try {
+      audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+      const t0 = audio.currentTime + cuando;
+      const o = audio.createOscillator(), g = audio.createGain();
+      o.type = 'sine'; o.frequency.setValueAtTime(110, t0); o.frequency.exponentialRampToValueAtTime(55, t0 + .18);
+      g.gain.setValueAtTime(.6, t0); g.gain.exponentialRampToValueAtTime(.001, t0 + .22);
+      o.connect(g); g.connect(audio.destination); o.start(t0); o.stop(t0 + .25);
+    } catch (e) {}
+  }
+  function abrir(conGolpes) {
+    if (puerta.classList.contains('abierta')) return;
+    if (conGolpes) { golpe(0); golpe(.32); golpe(.64); setTimeout(() => puerta.classList.add('abierta'), 900); }
+    else puerta.classList.add('abierta');
+  }
+  puerta.addEventListener('click', () => abrir(true));
+  const obs = new IntersectionObserver(es => es.forEach(e => {
+    cerradura.style.setProperty('--brillo', String(.15 + e.intersectionRatio * .85));
+    if (e.intersectionRatio >= .7) { abrir(false); obs.disconnect(); }
+  }), { threshold: [0, .2, .4, .6, .7, .9] });
   obs.observe(puerta);
 
   const fondo = document.querySelector('.fondo');
