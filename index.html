@@ -145,14 +145,14 @@
   @keyframes flashCorto { 0%, 30%, 45%, 100% { opacity:0 } 8% { opacity:.5 } 38% { opacity:.25 } }
   .marco-cartel { position:relative; width:min(560px, 100% - 36px); margin:0 auto; border-radius:4px; overflow:hidden; }
   .marco-cartel .cartel { width:100%; margin:0; }
-  .marco-cartel.iluminado .cartel { animation: destello .75s linear forwards; }
-  @keyframes destello { 0%, 30%, 45%, 100% { filter:brightness(1) } 8% { filter:brightness(1.8) saturate(1.2) } 38% { filter:brightness(1.35) } }
-  .lluvia { position:absolute; inset:-20% 0 0 0; pointer-events:none; opacity:.28; mix-blend-mode:screen;
-            background: repeating-linear-gradient(102deg, transparent 0 8px, rgba(220,210,255,.7) 8px 9px, transparent 9px 22px);
-            background-size: 100% 220px; animation: caer 1.2s linear infinite; }
-  .lluvia.b { opacity:.16; background-size:100% 340px; animation-duration:1.9s; background-position:60px 0; }
-  @keyframes caer { to { background-position: 0 220px } }
-  .lluvia.b { animation-name: caerB; } @keyframes caerB { to { background-position: 60px 340px } }
+  .cartel.quieto { animation:none !important; opacity:1; transform:none; filter:none; }
+  .destello { position:absolute; inset:0; pointer-events:none; opacity:0; background: radial-gradient(80% 60% at 50% 20%, rgba(236,228,255,.85), rgba(180,150,255,.35) 60%, transparent 100%); }
+  .marco-cartel.iluminado .destello { animation: destello .75s linear forwards; }
+  @keyframes destello { 0%, 30%, 45%, 100% { opacity:0 } 8% { opacity:.55 } 38% { opacity:.25 } }
+  .lluvia { position:absolute; inset:-15% 0 0 0; pointer-events:none; opacity:.11;
+            background: repeating-linear-gradient(104deg, transparent 0 14px, rgba(220,210,255,.9) 14px 15px, transparent 15px 34px);
+            background-size: 100% 260px; animation: caer 1.5s linear infinite; }
+  @keyframes caer { to { background-position: 0 260px } }
 
   /* neón que falla */
   body.lista .portada h1 { animation: aparecer 1.2s ease 1.4s forwards, neon 9s linear 4s infinite; }
@@ -182,11 +182,49 @@
   .hoja { transition:transform 2.4s cubic-bezier(.7,0,.22,1); }
   .puerta { cursor:pointer; }
   .puerta.abierta { cursor:default; }
-  .toca { margin-top:16px; color:var(--gris); font-size:14px; transition:opacity .5s; }
+  .toca { margin-top:16px; color:var(--lila); font-size:14px; transition:opacity .5s; animation: latir 2.4s ease-in-out infinite; }
+  @keyframes latir { 0%,100% { opacity:.55 } 50% { opacity:1 } }
   .puerta.abierta ~ .toca { opacity:0; }
 
+
+  /* luna con nubes que pasan */
+  .luna { position:fixed; top:-30px; right:-30px; width:190px; height:190px; z-index:0; pointer-events:none; opacity:.85; }
+  @media (min-width:700px) { .luna { width:260px; height:260px; right:5vw; top:-40px; } }
+  .luna .disco { position:absolute; inset:0; border-radius:50%; background: radial-gradient(circle at 42% 38%, #fff8e1 0%, #ece0ff 30%, #b39be6 62%, #6d4aa8 100%); box-shadow: 0 0 60px 22px rgba(196,160,255,.3), 0 0 160px 60px rgba(124,44,255,.18); }
+  .luna .disco::after { content:''; position:absolute; inset:0; border-radius:50%; background: radial-gradient(circle at 62% 60%, rgba(60,30,90,.28) 0 11%, transparent 12%), radial-gradient(circle at 30% 66%, rgba(60,30,90,.22) 0 7%, transparent 8%), radial-gradient(circle at 55% 25%, rgba(60,30,90,.18) 0 5%, transparent 6%); }
+  .luna .velo { position:absolute; inset:-10%; border-radius:50%; overflow:hidden; }
+  .nube { position:absolute; top:35%; left:-120%; width:140%; height:38%; border-radius:50%; background: radial-gradient(ellipse at 50% 50%, rgba(10,5,18,.92), rgba(10,5,18,.55) 55%, transparent 80%); filter:blur(6px); animation: pasar 58s linear infinite; }
+  .nube.b { top:58%; height:30%; animation-duration:83s; animation-delay:-30s; }
+  @keyframes pasar { from { transform:translateX(0) } to { transform:translateX(230%) } }
+
+  /* ojos en la niebla */
+  .ojos { position:fixed; inset:0; z-index:1; pointer-events:none; }
+  .ojos i { position:absolute; width:26px; height:9px; opacity:0; --c: rgba(255,80,90,.9); }
+  .ojos i::before, .ojos i::after { content:''; position:absolute; top:0; width:7px; height:9px; border-radius:50%; background: radial-gradient(circle at 50% 50%, #fff3f3 0 18%, var(--c) 45%, transparent 75%); box-shadow:0 0 8px 2px var(--c); }
+  .ojos i::before { left:0 } .ojos i::after { right:0 }
+  .ojos i.ver { animation: mirar 7s ease-in-out forwards; }
+  @keyframes mirar { 0% { opacity:0; transform:scaleY(1) } 12% { opacity:.95 } 40% { opacity:.95; transform:scaleY(1) } 44% { transform:scaleY(.08) } 48% { transform:scaleY(1) } 72% { opacity:.95 } 76% { transform:scaleY(.08) } 80% { transform:scaleY(1) } 100% { opacity:0 } }
+
+  /* cuervo */
+  .cuervo { position:fixed; top:16vh; left:-12vw; width:70px; z-index:1; pointer-events:none; fill:#06030a; opacity:0; }
+  .cuervo.volar { animation: cruzar 16s linear forwards; }
+  @keyframes cruzar { 0% { transform:translate(0, 0) scale(.6); opacity:0 } 8% { opacity:.9 } 50% { transform:translate(60vw, -4vh) scale(1) } 92% { opacity:.9 } 100% { transform:translate(125vw, 2vh) scale(1.2); opacity:0 } }
+  .cuervo svg { animation: aletazo .5s ease-in-out infinite alternate; transform-origin:50% 60%; }
+  @keyframes aletazo { from { transform:scaleY(1) } to { transform:scaleY(.6) } }
+
+  /* el título se corta con el rayo */
+  .portada h1.glitch { text-shadow: -3px 0 rgba(255,60,80,.7), 3px 0 rgba(90,200,255,.7), 0 0 34px rgba(139,61,255,.5); transform:translateX(1px); }
+
+  /* latido del botón principal */
+  .portada .accion .cta { animation: latido 2.2s ease-in-out infinite; }
+  @keyframes latido { 0%, 100% { transform:scale(1) } 14% { transform:scale(1.035) } 28% { transform:scale(1) } 42% { transform:scale(1.02) } 56% { transform:scale(1) } }
+
+  /* sonido */
+  .sonido { position:fixed; top:14px; right:14px; z-index:60; background:rgba(9,5,15,.75); border:1px solid var(--borde); color:var(--lila); border-radius:999px; padding:8px 14px; font:600 13px 'Inter', sans-serif; cursor:pointer; backdrop-filter:blur(6px); }
+  .sonido.on { color:var(--oro); border-color:rgba(230,199,116,.6); }
+
   @media (prefers-reduced-motion: reduce) {
-    .lluvia, .relampago.trueno, .marco-cartel.iluminado .cartel, .rayos, .humo { animation:none !important; }
+    .lluvia, .relampago.trueno, .marco-cartel.iluminado .destello, .rayos, .humo, .ojos i, .cuervo, .nube { animation:none !important; }
     body.lista .portada h1 { animation: aparecer 1.2s ease 1.4s forwards; }
     .cartel, body.lista .cartel { animation:none; opacity:1; transform:none; filter:none; }
     body.lista .relampago { animation:none; }
@@ -197,11 +235,16 @@
 </head>
 <body>
 
-<div class="fondo"></div><div class="niebla"></div><div class="niebla b"></div><div class="grano"></div><div class="relampago" id="relampago"></div><div class="linterna" id="linterna"></div>
+<div class="fondo"></div>
+<div class="luna"><div class="disco"></div><div class="velo"><div class="nube"></div><div class="nube b"></div></div></div>
+<div class="niebla"></div><div class="niebla b"></div><div class="ojos" id="ojos"></div>
+<div class="cuervo" id="cuervo"><svg viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg"><path d="M2 30 C18 22 30 18 44 24 L52 20 C58 16 66 16 72 20 L84 14 C90 12 96 14 102 20 L118 22 C110 26 100 30 92 30 L86 34 C80 40 72 42 64 38 L56 36 C48 40 40 40 34 36 L26 40 C16 44 8 40 2 30 Z"/></svg></div>
+<div class="grano"></div><div class="relampago" id="relampago"></div><div class="linterna" id="linterna"></div>
+<button class="sonido" id="sonido" type="button" aria-pressed="false">🔇 Sonido</button>
 
 <header class="portada">
   <p class="presenta">Legacy presenta</p>
-  <div class="marco-cartel" id="marco"><img class="cartel" src="flyer.jpg" alt="Cartel de Happy Halloween 8"><div class="lluvia"></div><div class="lluvia b"></div></div>
+  <div class="marco-cartel" id="marco"><img class="cartel" id="cartel" src="flyer.jpg" alt="Cartel de Happy Halloween 8"><div class="lluvia"></div><div class="destello"></div></div>
   <div class="col">
     <h1>Happy Halloween 8</h1>
     <p class="cuando">Sábado 31 de octubre · 19:00 · Ciudad de México<span>+18 · Disfraz obligatorio · Concurso de disfraces con premios en efectivo</span></p>
@@ -276,7 +319,7 @@
     <div class="hoja izq"><i class="vetas"></i><i class="bisagra a"></i><i class="bisagra b"></i><i class="bisagra c"></i><i class="aro"></i></div>
     <div class="hoja der"><i class="vetas"></i><i class="bisagra a"></i><i class="bisagra b"></i><i class="bisagra c"></i><i class="aro"></i><i class="cerradura" id="cerradura"></i></div>
   </div>
-  <p class="toca" id="toca">Toca la puerta</p>
+  <p class="toca" id="toca">Toca la puerta para entrar</p>
   <p class="pie">Preventa en línea hasta el 29 de octubre.</p>
   <div class="contacto">
     <a href="https://ig.me/m/happy_halloween8" target="_blank" rel="noopener">¿Dudas? Escríbenos por Instagram</a>
@@ -316,18 +359,70 @@
     else if (hoy >= f.dataset.inicio) f.classList.add('activa');
   });
 
-  // Tormenta: relámpagos a intervalos irregulares, con el cartel iluminándose
-  const relampago = document.getElementById('relampago'), marco = document.getElementById('marco');
+  // El cartel queda limpio (sin filtros) al terminar la entrada: evita fallas de dibujo en celulares
+  const imgCartel = document.getElementById('cartel');
+  imgCartel.addEventListener('animationend', () => imgCartel.classList.add('quieto'));
+
+  // Sonido: apagado hasta que la persona lo pide. Trueno y golpes sintetizados, sin archivos.
+  let audio = null, sonidoOn = false;
+  const btnSonido = document.getElementById('sonido');
+  function ctx() { audio = audio || new (window.AudioContext || window.webkitAudioContext)(); if (audio.state === 'suspended') audio.resume(); return audio; }
+  btnSonido.addEventListener('click', () => {
+    sonidoOn = !sonidoOn; ctx();
+    btnSonido.classList.toggle('on', sonidoOn); btnSonido.setAttribute('aria-pressed', String(sonidoOn));
+    btnSonido.textContent = sonidoOn ? '🔊 Sonido' : '🔇 Sonido';
+    if (sonidoOn) trueno(0.05);
+  });
+  function trueno(cuando) {
+    if (!sonidoOn) return;
+    try {
+      const a = ctx(), dur = 2.8, t0 = a.currentTime + cuando;
+      const buf = a.createBuffer(1, a.sampleRate * dur, a.sampleRate), d = buf.getChannelData(0);
+      for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 1.6);
+      const src = a.createBufferSource(); src.buffer = buf;
+      const f = a.createBiquadFilter(); f.type = 'lowpass'; f.frequency.setValueAtTime(90, t0); f.frequency.exponentialRampToValueAtTime(260, t0 + .25); f.frequency.exponentialRampToValueAtTime(60, t0 + dur);
+      const g = a.createGain(); g.gain.setValueAtTime(0, t0); g.gain.linearRampToValueAtTime(.9, t0 + .12); g.gain.exponentialRampToValueAtTime(.001, t0 + dur);
+      src.connect(f); f.connect(g); g.connect(a.destination); src.start(t0); src.stop(t0 + dur);
+    } catch (e) {}
+  }
+
+  // Tormenta: relámpagos a intervalos irregulares; el cartel se ilumina y el título se corta
+  const relampago = document.getElementById('relampago'), marco = document.getElementById('marco'), titulo = document.querySelector('.portada h1');
   const reducida = matchMedia('(prefers-reduced-motion: reduce)').matches;
   function tormenta() {
     if (!reducida && document.body.classList.contains('lista')) {
       relampago.classList.remove('trueno'); marco.classList.remove('iluminado');
       void relampago.offsetWidth;
       relampago.classList.add('trueno'); marco.classList.add('iluminado');
+      titulo.classList.add('glitch'); setTimeout(() => titulo.classList.remove('glitch'), 140);
+      setTimeout(() => titulo.classList.add('glitch'), 260); setTimeout(() => titulo.classList.remove('glitch'), 340);
+      trueno(.35 + Math.random() * .5);
     }
     setTimeout(tormenta, 9000 + Math.random() * 14000);
   }
   setTimeout(tormenta, 7000);
+
+  // Ojos en la niebla: aparecen, parpadean y se van
+  const ojos = document.getElementById('ojos');
+  function mirada() {
+    if (!reducida) {
+      const par = document.createElement('i');
+      par.style.left = (8 + Math.random() * 84) + 'vw'; par.style.top = (62 + Math.random() * 24) + 'vh';
+      if (Math.random() < .35) par.style.setProperty('--c', 'rgba(190,120,255,.9)');
+      ojos.appendChild(par); requestAnimationFrame(() => par.classList.add('ver'));
+      setTimeout(() => par.remove(), 7500);
+    }
+    setTimeout(mirada, 14000 + Math.random() * 22000);
+  }
+  setTimeout(mirada, 11000);
+
+  // Un cuervo cruza de vez en cuando
+  const cuervo = document.getElementById('cuervo');
+  function vuelo() {
+    if (!reducida) { cuervo.classList.remove('volar'); void cuervo.offsetWidth; cuervo.style.top = (8 + Math.random() * 16) + 'vh'; cuervo.classList.add('volar'); }
+    setTimeout(vuelo, 40000 + Math.random() * 40000);
+  }
+  setTimeout(vuelo, 18000);
 
   // Linterna que sigue el mouse (en celular no existe)
   const linterna = document.getElementById('linterna');
@@ -335,29 +430,40 @@
   addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; document.body.classList.add('conmouse'); if (!moviendo) { moviendo = true; requestAnimationFrame(seguir); } }, { passive: true });
   function seguir() { lx += (tx - lx) * .12; ly += (ty - ly) * .12; linterna.style.transform = `translate(${lx}px, ${ly}px)`; if (Math.abs(tx - lx) + Math.abs(ty - ly) > .5) requestAnimationFrame(seguir); else moviendo = false; }
 
-  // La puerta: la cerradura brilla al acercarte, se abre al llegar o al tocarla, con golpes
+  // La puerta: la cerradura brilla al acercarte; solo se abre cuando la tocas (tres golpes y cruje)
   const puerta = document.getElementById('puerta'), cerradura = document.getElementById('cerradura');
-  let audio = null;
   function golpe(cuando) {
     try {
-      audio = audio || new (window.AudioContext || window.webkitAudioContext)();
-      const t0 = audio.currentTime + cuando;
-      const o = audio.createOscillator(), g = audio.createGain();
+      const a = ctx(), t0 = a.currentTime + cuando;
+      const o = a.createOscillator(), g = a.createGain();
       o.type = 'sine'; o.frequency.setValueAtTime(110, t0); o.frequency.exponentialRampToValueAtTime(55, t0 + .18);
-      g.gain.setValueAtTime(.6, t0); g.gain.exponentialRampToValueAtTime(.001, t0 + .22);
-      o.connect(g); g.connect(audio.destination); o.start(t0); o.stop(t0 + .25);
+      g.gain.setValueAtTime(.7, t0); g.gain.exponentialRampToValueAtTime(.001, t0 + .22);
+      o.connect(g); g.connect(a.destination); o.start(t0); o.stop(t0 + .25);
     } catch (e) {}
   }
-  function abrir(conGolpes) {
-    if (puerta.classList.contains('abierta')) return;
-    if (conGolpes) { golpe(0); golpe(.32); golpe(.64); setTimeout(() => puerta.classList.add('abierta'), 900); }
-    else puerta.classList.add('abierta');
+  function crujido(cuando) {
+    try {
+      const a = ctx(), t0 = a.currentTime + cuando, dur = 1.6;
+      const o = a.createOscillator(), g = a.createGain(), f = a.createBiquadFilter();
+      o.type = 'sawtooth'; o.frequency.setValueAtTime(70, t0); o.frequency.linearRampToValueAtTime(48, t0 + dur);
+      f.type = 'bandpass'; f.frequency.value = 420; f.Q.value = 8;
+      g.gain.setValueAtTime(0, t0); g.gain.linearRampToValueAtTime(.16, t0 + .2); g.gain.linearRampToValueAtTime(.1, t0 + 1.1); g.gain.linearRampToValueAtTime(0, t0 + dur);
+      o.connect(f); f.connect(g); g.connect(a.destination); o.start(t0); o.stop(t0 + dur);
+    } catch (e) {}
   }
-  puerta.addEventListener('click', () => abrir(true));
+  function abrir() {
+    if (puerta.classList.contains('abierta')) return;
+    ctx();
+    golpe(0); golpe(.32); golpe(.64);
+    if (navigator.vibrate) navigator.vibrate([60, 200, 60, 200, 60]);
+    setTimeout(() => { puerta.classList.add('abierta'); crujido(0); }, 950);
+  }
+  puerta.addEventListener('click', abrir);
+  puerta.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrir(); } });
+  puerta.setAttribute('tabindex', '0'); puerta.setAttribute('role', 'button'); puerta.setAttribute('aria-label', 'Tocar la puerta para abrir');
   const obs = new IntersectionObserver(es => es.forEach(e => {
     cerradura.style.setProperty('--brillo', String(.15 + e.intersectionRatio * .85));
-    if (e.intersectionRatio >= .7) { abrir(false); obs.disconnect(); }
-  }), { threshold: [0, .2, .4, .6, .7, .9] });
+  }), { threshold: [0, .2, .4, .6, .8, 1] });
   obs.observe(puerta);
 
   const fondo = document.querySelector('.fondo');
